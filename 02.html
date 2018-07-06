@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- <my-component></my-component> -->
+        <table>
+            <tbody is="my-component">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        // 全局组件
+        // Vue.component('my-component',{
+        //     template : "<div>我是一个全局组件</div>"
+        // })
+        
+
+        // 局部组件
+        var child = {
+            template : "<div>我是一个局部组件</div>"
+        };
+        new Vue({
+            el: "#app",
+            components: {
+                'my-component': child
+            },
+            data:{
+
+            }
+        })
+
+    </script>
+</body>
+</html>

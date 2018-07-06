@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <my-component :count=count></my-component>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        // 子组件接收父组件的数据数据
+        var child = {
+            props: {
+                count: Number
+            },
+            template : "<div>我是一个{{msg}}</div>",
+            data(){
+                return {
+                    msg: this.count
+                }
+            }
+        };
+        new Vue({
+            el: "#app",
+            components: {
+                'my-component': child
+            },
+            data(){
+                return {
+                    count:1
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        父：{{count}}
+        <my-component v-on:add="add" :count=count></my-component>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        // 子父通信(双向绑定)
+        var child = {
+            props: {
+                count: Number
+            },
+            template : `<div>
+                            <div>{{count}}</div>
+                            <button @click="add()">+</button>
+                        </div>`,
+            data(){
+                return {
+                    msg: this.count
+                }
+            },
+            watch:{
+                msg(val){
+                    // console.log(val)
+                    this.$emit("add",val)
+                }
+            },
+            methods:{
+                add(){
+                    this.msg ++;
+                }
+            }
+        };
+        new Vue({
+            el: "#app",
+            components: {
+                'my-component': child
+            },
+            data(){
+                return {
+                    count:1
+                }
+            },
+            methods:{
+                add(val){
+                    this.count = val
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
